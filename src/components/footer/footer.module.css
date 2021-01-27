@@ -1,0 +1,17 @@
+/**
+ * Description: Styles for the footer section of the page
+ * Dependencies: CSS Modules
+ *
+ * package: @epsilon
+ */
+
+/* === Main Styling === */
+.footer {
+  float: left;
+  margin-left: 25%;
+  width: 50%;
+}
+
+.footer__header {
+  color: purple;
+}

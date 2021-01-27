@@ -1,0 +1,14 @@
+/**
+ * Description: Styles for the contact section of the page
+ * Dependencies: CSS Modules
+ *
+ * package: @epsilon
+ */
+
+/* === Main Styling === */
+.contact {
+  float: left;
+  height: 100vh;
+  margin-left: 25%;
+  width: 50%;
+}

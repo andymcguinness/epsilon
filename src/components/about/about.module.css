@@ -1,0 +1,25 @@
+/**
+ * Description: Styles for the about section of the page
+ * Dependencies: CSS Modules
+ *
+ * package: @epsilon
+ */
+
+/* === Main Styling === */
+.about {
+  display: block;
+  float: left;
+  height: 100vh;
+  margin-left: 25%;
+  width: 50%;
+}
+
+.about__left {
+  float: left;
+  width: 50%;
+}
+
+.about__right {
+  float: left;
+  width: 50%;
+}
