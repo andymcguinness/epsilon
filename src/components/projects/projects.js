@@ -11,7 +11,7 @@ const ProjectBox = props => (
 
 export default function Projects() {
   return (
-    <div className={projectStyles.projects}>
+    <div className={projectStyles.projects} id="projects">
       <h3 className="about__title">Projects</h3>
       <div className="projects__container">
         <ul className="projects__contents">

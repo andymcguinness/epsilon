@@ -5,6 +5,7 @@ import Projects from "../components/projects/projects"
 import Contact from "../components/contact/contact"
 import Footer from "../components/footer/footer"
 import "../components/global/global.css"
+import "fontsource-open-sans"
 
 export default function Home() {
   return (

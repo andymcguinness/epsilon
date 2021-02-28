@@ -14,13 +14,15 @@
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
   },
   "dependencies": {
+    "fontsource-open-sans": "^4.0.0",
+    "framer-motion": "^3.7.0",
     "gatsby": "^2.26.1",
+    "gatsby-plugin-anchor-links": "^1.2.1",
+    "gatsby-plugin-smoothscroll": "^1.2.0",
     "gatsby-plugin-typography": "^2.10.0",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
-    "react-typography": "^0.16.19",
-    "typography": "^0.16.19",
-    "typography-theme-fairy-gates": "^0.16.19"
+    "react-typography": "^0.16.19"
   },
   "devDependencies": {
     "prettier": "2.2.1"

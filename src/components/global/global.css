@@ -5,6 +5,11 @@
  **/
 
 /* === Styles === */
+* {
+  box-sizing: border-box;
+}
 body {
   margin: 0;
+  font-family: "Open Sans";
+  font-weight: 400;
 }

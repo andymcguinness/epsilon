@@ -1,0 +1,15 @@
+/**
+ * Description: Global typography styles
+ *
+ * @package: epsilon
+ **/
+
+/* === Section Titles === */
+.section__title {
+  margin-top: 0;
+  margin-bottom: 2rem;
+
+  border-bottom: 0.25rem solid purple;
+
+  font-size: 2rem;
+}
