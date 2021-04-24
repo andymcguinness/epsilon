@@ -21,6 +21,29 @@
   background-size: cover;
 }
 
+/* === The Navbar === */
+.header__nav {
+  position: fixed;
+  width: 100%;
+  background: red;
+}
+
+.header__nav_left {
+  float: left;
+  width: 50%;
+}
+
+.header__nav_wordmark {
+  float: left;
+  padding: 0.5rem;
+}
+
+.header__nav_right {
+  float: left;
+  width: 50%;
+}
+
+/* === The Hero === */
 .header__wordmark {
   float: left;
   width: 100%;

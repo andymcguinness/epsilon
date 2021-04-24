@@ -1,5 +1,6 @@
 import React from "react"
-import { motion, useViewportScroll, useTransform } from "framer-motion"
+import { useRef, useLayoutEffect, useState } from "react"
+import { motion, useViewportScroll, useTransform, useAnimation, useSpring, easeIn } from "framer-motion"
 import headerStyles from "./header.module.css"
 import { AnchorLink } from "gatsby-plugin-anchor-links"
 import { Div100vh, use100vh } from 'react-div-100vh'
@@ -13,7 +14,7 @@ const ListLink = props => (
 
 export default function Header() {
   // Animation Properties
-  // -- Initial Load Animations
+  // -- Initial Load Animations for hero
   const headerVariants = {
     hidden: {
       opacity: 0,
@@ -49,43 +50,125 @@ export default function Header() {
     visible: { opacity: 1, y: 0 },
   }
 
-  // -- Scroll Animations
+  // -- Scroll Animations for header
   const { scrollY } = useViewportScroll()
   // scrollY gives us the amount, in pixels, from the top we've scrolled
 
-  // Pseudo-coding a bit
-  // I want to take the scroll offset of Y,
-  // and when the position of the header gets within 2 rem of the top value,
-  // the header gets smaller. Let's start with that.
-  const headerRef = React.useRef()
   const height = use100vh() // since I can't tell the y-offset of the element I need, just do some rough math
   const oneThirdHeight = height ? height / 3 : "33vh"
-  const [isPastLimit, setIsPastLimit] = React.useState(false)
-  const [position, setPosition] = React.useState("inherit")
+  const twoThirdHeight = height ? (height / 3) * 2 : "66vh"
+
+  const [opacityValue, setOpacityValue] = useState(0);
+
+  const controls = useAnimation()
+
+  const ref = useRef(0)
+
+  const opacity = useTransform(scrollY, [0, oneThirdHeight, oneThirdHeight + 10], [0, 0, 1], easeIn)
+
+  opacity.onChange(() => {
+    setOpacityValue(opacity.current)
+  })
+
+  const navVariants = {
+    hidden: {
+      opacity: 0,
+      transition: {
+        when: "afterChildren",
+      },
+    },
+    visible: {
+      opacity: 1,
+      transition: {
+        when: "beforeChildren",
+        staggerChildren: 0.3,
+        //ease: "easeIn",
+        duration: 0.1,
+        delay: 0,
+      },
+    },
+  }
+  const navLeftVariants = {
+    hidden: {
+      opacity: 0,
+      transition: {
+        when: "afterChildren",
+      },
+    },
+    visible: {
+      opacity: 1,
+      transition: {
+        when: "beforeChildren",
+        staggerChildren: 0.3,
+        ease: "easeIn",
+        duration: 0.6,
+        delay: 0,
+      },
+    },
+  }
+  const navHeaderVariants = {
+    hidden: { opacity: 0, y: 100 },
+    visible: { opacity: 1, y: 0 },
+  }
+  const navListVariants = {
+    hidden: {
+      opacity: 0,
+      transition: {
+        when: "afterChildren",
+      },
+    },
+    visible: {
+      opacity: 1,
+      transition: {
+        when: "beforeChildren",
+        staggerChildren: 0.3,
+        ease: "easeIn",
+        duration: 0.3,
+        delay: 0,
+      },
+    },
+  }
+  const navItemVariants = {
+    hidden: { opacity: 0, y: 100 },
+    visible: { opacity: 1, y: 0 },
+  }
 
   // The Header Itself
   return (
     <React.Fragment>
-      <motion.header
-        className={headerStyles.header-nav}
+      <motion.div
+        className={headerStyles.header__nav}
         id="header-nav"
-        initial="hidden"
-        animate="visible">
-        <motion.div
-          className={headerStyles.header-nav__left}
+        style={{opacity}}
+        initial={false}
+        animate={opacityValue ? "visible" : "hidden"}
+        variants={navVariants}
+        controls={controls}
         >
-          <h6>Andy McGuinness</h6>
+        <motion.div
+          className={headerStyles.header__nav_left}
+          initial={false}
+          variants={navLeftVariants}
+        >
+          <motion.h6
+            className={headerStyles.header__nav_wordmark}
+            variants={navHeaderVariants}
+            animate={opacityValue ? "visible" : "hidden"}
+          >Andy McGuinness</motion.h6>
         </motion.div>
         <motion.div
-          className={headerStyles.header-nav__right}
+          className={headerStyles.header__nav_right}
+          initial={false}
+          variants={navListVariants}
         >
-          <ul>
+          <motion.ul
+            variants={navItemVariants}>
             <li>Hello</li>
             <li>Test 2</li>
             <li>Test 3</li>
-          </ul>
+          </motion.ul>
         </motion.div>
-      </motion.header>
+      </motion.div>
       <motion.header
         className={headerStyles.header}
         id="header"
@@ -101,7 +184,7 @@ export default function Header() {
         >
           <motion.div variants={itemVariants}>
             <AnchorLink to="/#header" className={headerStyles.header__wordmark}>
-              <motion.h3 className={headerStyles.header__name}>Andy McGuinness</motion.h3>
+              <motion.h3 ref={ref} className={headerStyles.header__name}>Andy McGuinness</motion.h3>
             </AnchorLink>
           </motion.div>
           <motion.span
