@@ -63,56 +63,65 @@ export default function Header() {
   const [isPastLimit, setIsPastLimit] = React.useState(false)
   const [position, setPosition] = React.useState("inherit")
 
-  const scaleAnim = useTransform(scrollY, [0, oneThirdHeight], [1, 0.25])
-  const xAnim = useTransform(scrollY, [0, oneThirdHeight], ["0", "-75%"])
-
-  scrollY.onChange(offset => {
-    if (offset >= oneThirdHeight) {
-      setIsPastLimit(true)
-      setPosition("fixed")
-    } else {
-      setIsPastLimit(false)
-      setPosition("inherit")
-    }
-  })
-
   // The Header Itself
   return (
-    <motion.header
-      className={headerStyles.header}
-      id="header"
-      initial="hidden"
-      animate="visible"
-      variants={headerVariants}
-    >
-      <motion.div
-        className={headerStyles.header__content}
+    <React.Fragment>
+      <motion.header
+        className={headerStyles.header-nav}
+        id="header-nav"
+        initial="hidden"
+        animate="visible">
+        <motion.div
+          className={headerStyles.header-nav__left}
+        >
+          <h6>Andy McGuinness</h6>
+        </motion.div>
+        <motion.div
+          className={headerStyles.header-nav__right}
+        >
+          <ul>
+            <li>Hello</li>
+            <li>Test 2</li>
+            <li>Test 3</li>
+          </ul>
+        </motion.div>
+      </motion.header>
+      <motion.header
+        className={headerStyles.header}
+        id="header"
         initial="hidden"
         animate="visible"
-        variants={listVariants}
+        variants={headerVariants}
       >
-        <motion.div variants={itemVariants}>
-          <AnchorLink to="/#header" className={headerStyles.header__wordmark}>
-            <motion.h3 className={headerStyles.header__name} ref={headerRef} style={{ scale: scaleAnim, x: xAnim, position: position }} animate={ isPastLimit ? {"margin-left": "7.5rem", top: "0"} : {"margin-left": "0", top: "auto"}}>Andy McGuinness</motion.h3>
-          </AnchorLink>
+        <motion.div
+          className={headerStyles.header__content}
+          initial="hidden"
+          animate="visible"
+          variants={listVariants}
+        >
+          <motion.div variants={itemVariants}>
+            <AnchorLink to="/#header" className={headerStyles.header__wordmark}>
+              <motion.h3 className={headerStyles.header__name}>Andy McGuinness</motion.h3>
+            </AnchorLink>
+          </motion.div>
+          <motion.span
+            className={headerStyles.header__text}
+            variants={itemVariants}
+          >
+            Problem solver. Data analyst. Former barista.
+          </motion.span>
+          <motion.ul
+            className={headerStyles.header__links}
+            variants={itemVariants}
+          >
+            <ListLink to="#about">About</ListLink>
+            <li className={headerStyles.header__divider}>|</li>
+            <ListLink to="#projects">Projects</ListLink>
+            <li className={headerStyles.header__divider}>|</li>
+            <ListLink to="#contact">Contact</ListLink>
+          </motion.ul>
         </motion.div>
-        <motion.span
-          className={headerStyles.header__text}
-          variants={itemVariants}
-        >
-          Problem solver. Data analyst. Former barista.
-        </motion.span>
-        <motion.ul
-          className={headerStyles.header__links}
-          variants={itemVariants}
-        >
-          <ListLink to="#about">About</ListLink>
-          <li className={headerStyles.header__divider}>|</li>
-          <ListLink to="#projects">Projects</ListLink>
-          <li className={headerStyles.header__divider}>|</li>
-          <ListLink to="#contact">Contact</ListLink>
-        </motion.ul>
-      </motion.div>
-    </motion.header>
+      </motion.header>
+    </React.Fragment>
   )
 }
