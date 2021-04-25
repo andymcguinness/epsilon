@@ -1,0 +1,79 @@
+/**
+ * Description: Styles for the page navbar
+ * Dependencies: CSS Modules
+ *
+ * package: @epsilon
+ */
+
+
+/* === The Navbar === */
+.nav {
+    display: flex;
+    position: fixed;
+    height: 4rem;
+    width: 100%;
+    background-color: #4F637D;
+  }
+  
+/* === Left Side === */
+  .nav__left {
+    display: flex;
+    float: left;
+    width: 50%;
+  }
+  .nav__wordmark {
+    display: inline-flex;
+  }
+  .nav__wordmark a {
+    align-self: center;
+    display: inline-flex;
+    float: none;
+    width: auto;
+
+    padding-right: 1rem;
+    padding-left: 1rem;
+
+    color: #eee;
+    font-weight: bold;
+    text-decoration: none;
+  }
+
+/* === Right Side === */
+.nav__right {
+    display: flex;
+    float: left;
+    width: 50%;
+    justify-content: flex-end;
+}
+.nav__links {
+    display: inline-flex;
+    margin: 0;
+    padding: 0;
+}
+.nav__link {
+    display: inline-flex;
+    float: none;
+    width: auto;
+    align-self: center;
+
+    padding-right: 0.5rem;
+    padding-left: 0.5rem;
+}
+.nav__link:last-child {
+    padding-right: 1rem;
+}
+.nav__link a {
+    height: auto;
+    color: #eee;
+}
+.nav__divider {
+    display: inline-block;
+    float: none;
+    width: auto;
+    align-self: center;
+
+    padding-right: 0.5rem;
+    padding-left: 0.5rem;
+
+    color: #eee;
+}

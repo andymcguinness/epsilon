@@ -1,5 +1,5 @@
 /**
- * Description: Styles for the page hero/header
+ * Description: Styles for the page hero
  * Dependencies: CSS Modules
  *
  * package: @epsilon
@@ -19,23 +19,6 @@
   background-image: url("./header_bg.jpg");
   background-position-y: bottom;
   background-size: cover;
-}
-
-/* === The Navbar === */
-.header__nav {
-  position: fixed;
-  width: 100%;
-  background: red;
-}
-
-.header__nav_left {
-  float: left;
-  width: 50%;
-}
-
-.header__nav_wordmark {
-  float: left;
-  padding: 0.5rem;
 }
 
 .header__nav_right {
